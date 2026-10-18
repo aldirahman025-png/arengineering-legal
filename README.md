@@ -7,3 +7,5 @@ Kebijakan privasi, perjanjian lisensi, dan cara menghapus akun aplikasi AREngine
 - [Hapus akun & data](https://aldirahman025-png.github.io/arengineering-legal/hapus-akun.html)
 
 Halaman dibuat otomatis dari repo aplikasi (`npm run build:legal`).
+
+Alamat publik: https://aldirahman025-png.github.io/arengineering-legal/
