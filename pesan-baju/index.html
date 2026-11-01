@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pre-Order Baju Lapangan · AREngineering</title>
+<meta name="description" content="Pre-order baju lapangan AREngineering: 3 warna, pita reflektor, bordir nama sendiri. Harga sesuai konveksi, tanpa untung.">
+<meta property="og:title" content="Pre-Order Baju Lapangan AREngineering">
+<meta property="og:description" content="3 warna · pita reflektor · bordir nama sendiri · harga sesuai konveksi">
+<meta property="og:image" content="warna-B.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0B1628;--card:#13223B;--card2:#172A48;--fg:#F4F7FB;--mu:#9FB3CC;--ac:#F7882F;--ok:#22C55E;--er:#F87171;--line:#22355A;--photo:#E3E8EE}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 'Public Sans',system-ui,sans-serif}
+main{max-width:640px;margin:0 auto;padding:24px 16px 56px}
+.logo{width:190px;display:block}
+h1{font:700 44px/1 Oswald,sans-serif;margin:18px 0 6px;letter-spacing:.5px}h1 span{color:var(--ac)}
+.lead{color:var(--mu);margin:0 0 14px}
+.pill{display:inline-block;background:var(--ac);color:#0B1628;font:600 14px Oswald,sans-serif;letter-spacing:1px;padding:6px 12px;border-radius:99px}
+h2{font:600 22px Oswald,sans-serif;letter-spacing:.5px;margin:30px 0 10px}
+.colors{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.colors label{display:block;background:var(--photo);border-radius:16px;padding:8px 4px 10px;text-align:center;cursor:pointer;border:3px solid transparent;color:#0B1628}
+.colors img{width:100%;height:auto;display:block}
+.colors b{display:block;font:600 15px/1.2 Oswald,sans-serif;margin-top:4px}
+.colors input{position:absolute;opacity:0;pointer-events:none}
+.colors input:checked+label{border-color:var(--ac);box-shadow:0 0 0 3px rgba(247,136,47,.25)}
+.colors input:focus-visible+label{outline:3px solid #fff}
+.field{margin:14px 0}
+.field label{display:block;font-weight:600;margin-bottom:6px}
+.field small{color:var(--mu);font-weight:400}
+input[type=text],input[type=tel],input[type=number],select,textarea{width:100%;background:var(--card);color:var(--fg);border:1.5px solid var(--line);border-radius:12px;padding:13px 14px;font:inherit}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ac)}
+.sizes{display:flex;gap:8px;flex-wrap:wrap}
+.sizes input{position:absolute;opacity:0;pointer-events:none}
+.sizes label{min-width:58px;text-align:center;padding:11px 10px;border-radius:12px;background:var(--card);border:1.5px solid var(--line);font:600 18px Oswald,sans-serif;cursor:pointer;margin:0}
+.sizes input:checked+label{background:var(--ac);color:#0B1628;border-color:var(--ac)}
+details{background:var(--card);border-radius:14px;padding:12px 14px;margin-top:10px}
+summary{cursor:pointer;font-weight:600;color:var(--ac)}
+table{width:100%;border-collapse:collapse;margin-top:10px;font-size:15px}
+th,td{padding:8px 4px;text-align:center;border-bottom:1px solid var(--line)}th{color:var(--mu);font-weight:600}td:first-child{font:600 17px Oswald,sans-serif}
+.flap{margin-top:8px;background:#353C46;border-bottom:3px solid var(--ac);border-radius:6px 6px 2px 2px;padding:10px 12px;font:600 15px Oswald,sans-serif;letter-spacing:1.5px;color:#fff;display:inline-block;min-width:150px;text-align:center}
+.row2{display:grid;grid-template-columns:1fr 120px;gap:12px}
+button{width:100%;margin-top:20px;background:var(--ac);color:#0B1628;border:0;border-radius:14px;padding:16px;font:700 20px Oswald,sans-serif;letter-spacing:1px;cursor:pointer}
+button:disabled{opacity:.6;cursor:wait}
+.msg{margin-top:14px;padding:12px 14px;border-radius:12px;display:none}
+.msg.er{display:block;background:rgba(248,113,113,.12);border:1px solid var(--er);color:#FECACA}
+.ok{display:none;background:var(--card);border-radius:18px;padding:22px;margin-top:20px;border:2px solid var(--ok)}
+.ok h2{margin-top:0;color:var(--ok)}
+.ok dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:12px 0}.ok dt{color:var(--mu)}.ok dd{margin:0;font-weight:600}
+.wa{display:block;text-align:center;background:#25D366;color:#06210F;text-decoration:none;border-radius:14px;padding:14px;font:700 18px Oswald,sans-serif;letter-spacing:.5px;margin-top:10px}
+.info{margin-top:28px;background:var(--card);border-left:5px solid var(--ac);border-radius:12px;padding:14px 16px;color:#DCE5F0;font-size:15px}
+.info ul{margin:6px 0 0;padding-left:18px}
+footer{color:var(--mu);font-size:13px;margin-top:28px;text-align:center}
+@media (max-width:420px){h1{font-size:36px}.colors b{font-size:13px}}
+</style>
+</head>
+<body>
+<main>
+  <img class="logo" src="logo.svg" alt="AREngineering">
+  <h1>PRE-ORDER <span>BAJU LAPANGAN</span></h1>
+  <p class="lead">Kemeja PDL lengan panjang dengan pita reflektor, ventilasi punggung, dan bordir nama sendiri.</p>
+  <span class="pill">TANPA UNTUNG · HARGA = HARGA KONVEKSI</span>
+
+  <form id="f" novalidate>
+    <h2>1 · Pilih warna</h2>
+    <div class="colors" role="radiogroup" aria-label="Warna">
+      <div><input type="radio" name="warna" id="wA" value="A" required><label for="wA"><img src="warna-A.png" alt="Navy dan abu arang" loading="lazy"><b>Navy &amp; Abu Arang</b></label></div>
+      <div><input type="radio" name="warna" id="wB" value="B"><label for="wB"><img src="warna-B.png" alt="Navy dan oranye" loading="lazy"><b>Navy &amp; Oranye</b></label></div>
+      <div><input type="radio" name="warna" id="wC" value="C"><label for="wC"><img src="warna-C.png" alt="Hijau zaitun dan hitam" loading="lazy"><b>Zaitun &amp; Hitam</b></label></div>
+    </div>
+
+    <h2>2 · Pilih ukuran</h2>
+    <div class="sizes" role="radiogroup" aria-label="Ukuran">
+      <input type="radio" name="ukuran" id="uS" value="S"><label for="uS">S</label>
+      <input type="radio" name="ukuran" id="uM" value="M"><label for="uM">M</label>
+      <input type="radio" name="ukuran" id="uL" value="L"><label for="uL">L</label>
+      <input type="radio" name="ukuran" id="uXL" value="XL"><label for="uXL">XL</label>
+      <input type="radio" name="ukuran" id="uXXL" value="XXL"><label for="uXXL">XXL</label>
+    </div>
+    <details><summary>Lihat tabel ukuran (cm)</summary>
+      <table><tr><th>Ukuran</th><th>Lebar dada</th><th>Panjang</th><th>Lengan</th></tr>
+      <tr><td>S</td><td>50</td><td>70</td><td>58</td></tr><tr><td>M</td><td>52</td><td>72</td><td>59</td></tr>
+      <tr><td>L</td><td>54</td><td>74</td><td>60</td></tr><tr><td>XL</td><td>56</td><td>76</td><td>61</td></tr>
+      <tr><td>XXL</td><td>58</td><td>78</td><td>62</td></tr></table>
+      <p style="margin:8px 0 0;color:var(--mu);font-size:14px">Ukur kemeja yang paling pas di badanmu (diletakkan rata), toleransi ±1–2 cm. Ukuran final mengikuti pola konveksi.</p>
+    </details>
+
+    <h2>3 · Data pemesan</h2>
+    <div class="field"><label for="nama">Nama lengkap</label><input type="text" id="nama" maxlength="60" autocomplete="name" required></div>
+    <div class="field"><label for="wa">Nomor WhatsApp <small>(untuk konfirmasi)</small></label><input type="tel" id="wa" inputmode="tel" placeholder="08xxxxxxxxxx" autocomplete="tel" required></div>
+    <div class="row2">
+      <div class="field"><label for="bordir">Nama bordir <small>(maks. 15 huruf)</small></label><input type="text" id="bordir" maxlength="15" required></div>
+      <div class="field"><label for="jumlah">Jumlah</label><input type="number" id="jumlah" min="1" max="10" value="1" required></div>
+    </div>
+    <div><small style="color:var(--mu)">Pratinjau bordir di tutup kantong:</small><br><span class="flap" id="flap">NAMA ANDA</span></div>
+    <div class="field"><label for="catatan">Catatan <small>(opsional)</small></label><textarea id="catatan" rows="2" maxlength="200"></textarea></div>
+
+    <button type="submit" id="kirim">KIRIM PESANAN</button>
+    <div class="msg" id="msg" role="alert"></div>
+  </form>
+
+  <section class="ok" id="ok" aria-live="polite">
+    <h2>✓ Pesanan tercatat</h2>
+    <p style="margin:0">Terima kasih! Pesananmu sudah masuk. Konfirmasi harga dan pembayaran akan dikirim lewat WhatsApp.</p>
+    <dl id="ring"></dl>
+    <a class="wa" id="walink" target="_blank" rel="noopener">Kirim konfirmasi ke WhatsApp</a>
+    <button type="button" id="lagi" style="background:transparent;color:var(--fg);border:1.5px solid var(--line);font-size:16px">Pesan lagi</button>
+  </section>
+
+  <div class="info"><b>Transparan & tanpa untung</b>
+    <ul><li>Harga per baju sama dengan harga konveksi; nota dibagikan ke semua pemesan.</li>
+    <li>Harga, tanggal tutup PO, dan cara bayar dikirim lewat WhatsApp setelah pesanan masuk.</li>
+    <li>Bila jumlah minimal produksi tidak tercapai, PO dibatalkan dan tidak ada biaya.</li></ul></div>
+  <footer>AREngineering · Survei · Pemetaan · Tambang<br>Data hanya dipakai untuk pesanan ini.</footer>
+</main>
+<script>
+const URL_RPC = 'https://hngrttfaqjqwhciqjpbx.supabase.co/rest/v1/rpc/pesan_baju';
+const KUNCI = 'sb_publishable_Tv5xo51E-looYvVhkyjjSg_MnNYVX5f';
+const WA_ADMIN = '62895397195492';
+const NAMA_WARNA = {A:'Navy & Abu Arang', B:'Navy & Oranye', C:'Hijau Zaitun & Hitam'};
+const $ = id => document.getElementById(id);
+const f = $('f'), msg = $('msg'), btn = $('kirim');
+$('bordir').addEventListener('input', e => { $('flap').textContent = e.target.value.trim().toUpperCase() || 'NAMA ANDA'; });
+const galat = t => { msg.textContent = t; msg.className = 'msg er'; msg.scrollIntoView({behavior:'smooth', block:'center'}); };
+f.addEventListener('submit', async e => {
+  e.preventDefault(); msg.className = 'msg';
+  const d = {
+    p_warna: (f.querySelector('input[name=warna]:checked')||{}).value,
+    p_ukuran: (f.querySelector('input[name=ukuran]:checked')||{}).value,
+    p_nama: $('nama').value.trim(), p_whatsapp: $('wa').value.trim(),
+    p_nama_bordir: $('bordir').value.trim(), p_jumlah: parseInt($('jumlah').value, 10),
+    p_catatan: $('catatan').value.trim() || null };
+  if (!d.p_warna) return galat('Pilih warna baju dulu.');
+  if (!d.p_ukuran) return galat('Pilih ukuran baju dulu.');
+  if (d.p_nama.length < 2) return galat('Isi nama lengkap.');
+  if (!/^[0-9]{9,15}$/.test(d.p_whatsapp.replace(/[^0-9]/g, ''))) return galat('Nomor WhatsApp belum benar (contoh: 081234567890).');
+  if (!d.p_nama_bordir) return galat('Isi nama yang mau dibordir.');
+  if (!(d.p_jumlah >= 1 && d.p_jumlah <= 10)) return galat('Jumlah 1 sampai 10 baju per pesanan.');
+  btn.disabled = true; btn.textContent = 'MENGIRIM…';
+  try {
+    const r = await fetch(URL_RPC, { method:'POST', headers:{ 'apikey':KUNCI, 'Content-Type':'application/json' }, body: JSON.stringify(d) });
+    const j = await r.json().catch(() => null);
+    if (!r.ok) throw new Error((j && j.message && /Terlalu banyak/.test(j.message)) ? j.message : 'Pesanan belum terkirim. Periksa isian lalu coba lagi.');
+    const id = j;
+    const baris = [['No. pesanan', '#' + id], ['Warna', NAMA_WARNA[d.p_warna]], ['Ukuran', d.p_ukuran], ['Nama bordir', d.p_nama_bordir.toUpperCase()], ['Jumlah', d.p_jumlah]];
+    $('ring').innerHTML = ''; baris.forEach(([k, v]) => { const dt = document.createElement('dt'); dt.textContent = k; const dd = document.createElement('dd'); dd.textContent = v; $('ring').append(dt, dd); });
+    const teks = `Halo, saya sudah pesan baju lapangan AREngineering.\nNo. pesanan: #${id}\nNama: ${d.p_nama}\nWarna: ${NAMA_WARNA[d.p_warna]}\nUkuran: ${d.p_ukuran}\nNama bordir: ${d.p_nama_bordir.toUpperCase()}\nJumlah: ${d.p_jumlah}`;
+    $('walink').href = 'https://wa.me/' + WA_ADMIN + '?text=' + encodeURIComponent(teks);
+    f.style.display = 'none'; $('ok').style.display = 'block'; $('ok').scrollIntoView({behavior:'smooth'});
+  } catch (err) { galat(err.message || 'Koneksi gagal. Coba lagi.'); }
+  finally { btn.disabled = false; btn.textContent = 'KIRIM PESANAN'; }
+});
+$('lagi').addEventListener('click', () => { f.reset(); $('flap').textContent = 'NAMA ANDA'; $('ok').style.display = 'none'; f.style.display = 'block'; window.scrollTo({top:0, behavior:'smooth'}); });
+</script>
+</body>
+</html>
