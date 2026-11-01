@@ -2,6 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-cache">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Pre-Order Baju Lapangan · AREngineering</title>
 <meta name="description" content="Pre-order baju lapangan AREngineering: 3 warna, pita reflektor, bordir nama sendiri. Harga sesuai konveksi, tanpa untung.">
@@ -68,7 +69,7 @@ footer{color:var(--mu);font-size:13px;margin-top:28px;text-align:center}
 </head>
 <body>
 <main>
-  <img class="logo" src="logo.svg" alt="AREngineering">
+  <img class="logo" src="logo.svg?v=20261101-k3" alt="AREngineering">
   <h1>PRE-ORDER <span>BAJU LAPANGAN</span></h1>
   <p class="lead">Kemeja PDL lengan panjang dengan pita reflektor, ventilasi punggung, dan bordir nama sendiri.</p>
   <span class="pill">TANPA UNTUNG · HARGA = HARGA KONVEKSI</span>
@@ -76,13 +77,13 @@ footer{color:var(--mu);font-size:13px;margin-top:28px;text-align:center}
   <form id="f" novalidate>
     <h2>1 · Pilih warna</h2>
     <div class="colors" role="radiogroup" aria-label="Warna">
-      <div><input type="radio" name="warna" id="wA" value="A" required><label for="wA"><img src="warna-A.png" alt="Navy dan abu arang" loading="lazy"><b>Navy &amp; Abu Arang</b></label></div>
-      <div><input type="radio" name="warna" id="wB" value="B"><label for="wB"><img src="warna-B.png" alt="Navy dan oranye" loading="lazy"><b>Navy &amp; Oranye</b></label></div>
-      <div><input type="radio" name="warna" id="wC" value="C"><label for="wC"><img src="warna-C.png" alt="Hijau zaitun dan hitam" loading="lazy"><b>Zaitun &amp; Hitam</b></label></div>
+      <div><input type="radio" name="warna" id="wA" value="A" required><label for="wA"><img src="warna-A.png?v=20261101-k3" alt="Navy dan abu arang" loading="lazy"><b>Navy &amp; Abu Arang</b></label></div>
+      <div><input type="radio" name="warna" id="wB" value="B"><label for="wB"><img src="warna-B.png?v=20261101-k3" alt="Navy dan oranye" loading="lazy"><b>Navy &amp; Oranye</b></label></div>
+      <div><input type="radio" name="warna" id="wC" value="C"><label for="wC"><img src="warna-C.png?v=20261101-k3" alt="Hijau zaitun dan hitam" loading="lazy"><b>Zaitun &amp; Hitam</b></label></div>
     </div>
 
     <div class="gal" aria-label="Galeri tampilan baju">
-      <div class="main"><img id="gImg" src="A-depan.jpg" alt="Tampak depan"></div>
+      <div class="main"><img id="gImg" src="A-depan.jpg?v=20261101-k3" alt="Tampak depan"></div>
       <div class="cap" id="gCap">NAVY &amp; ABU ARANG · TAMPAK DEPAN</div>
       <div class="tabs" id="gTabs"></div>
     </div>
@@ -95,7 +96,7 @@ footer{color:var(--mu);font-size:13px;margin-top:28px;text-align:center}
       <input type="radio" name="ukuran" id="uXL" value="XL"><label for="uXL">XL</label>
       <input type="radio" name="ukuran" id="uXXL" value="XXL"><label for="uXXL">XXL</label>
     </div>
-    <a class="sz" href="tabel-ukuran.jpg" target="_blank" rel="noopener"><img src="tabel-ukuran.jpg" alt="Tabel ukuran baju lapangan: lebar dada, panjang, lengan untuk S sampai XXL, dengan gambar cara mengukur" loading="lazy"><span>Ketuk untuk memperbesar tabel ukuran</span></a>
+    <a class="sz" href="tabel-ukuran.jpg?v=20261101-k3" target="_blank" rel="noopener"><img src="tabel-ukuran.jpg?v=20261101-k3" alt="Tabel ukuran baju lapangan: lebar dada, panjang, lengan untuk S sampai XXL, dengan gambar cara mengukur" loading="lazy"><span>Ketuk untuk memperbesar tabel ukuran</span></a>
     <details><summary>Tabel ukuran versi teks (cm)</summary>
       <table><tr><th>Ukuran</th><th>Lebar dada</th><th>Panjang</th><th>Lengan</th></tr>
       <tr><td>S</td><td>50</td><td>70</td><td>58</td></tr><tr><td>M</td><td>52</td><td>72</td><td>59</td></tr>
@@ -170,19 +171,20 @@ f.addEventListener('submit', async e => {
   finally { btn.disabled = false; btn.textContent = 'KIRIM PESANAN'; }
 });
 
+const VER = '20261101-k3';
 const SISI = [['depan','Depan'],['belakang','Belakang'],['kiri','Kiri'],['kanan','Kanan'],['kantong','Kantong']];
 let gW = 'A', gS = 'depan';
 const gTabs = $('gTabs');
 function gal(){
-  $('gImg').src = gW + '-' + gS + '.jpg';
+  $('gImg').src = gW + '-' + gS + '.jpg?v=' + VER;
   const lbl = SISI.find(x=>x[0]==gS)[1];
   $('gImg').alt = NAMA_WARNA[gW] + ', tampak ' + lbl.toLowerCase();
   $('gCap').textContent = NAMA_WARNA[gW].toUpperCase() + ' · ' + (gS=='kantong' ? 'DETAIL KANTONG & BORDIR' : 'TAMPAK ' + lbl.toUpperCase());
   gTabs.innerHTML = '';
-  SISI.forEach(([k,l]) => { const b = document.createElement('button'); b.type='button'; b.setAttribute('aria-pressed', k==gS); b.innerHTML = '<img src="'+gW+'-'+k+'.jpg" alt="" loading="lazy">' + l; b.onclick = () => { gS = k; gal(); }; gTabs.append(b); });
+  SISI.forEach(([k,l]) => { const b = document.createElement('button'); b.type='button'; b.setAttribute('aria-pressed', k==gS); b.innerHTML = '<img src="'+gW+'-'+k+'.jpg?v='+VER+'" alt="" loading="lazy">' + l; b.onclick = () => { gS = k; gal(); }; gTabs.append(b); });
 }
 f.querySelectorAll('input[name=warna]').forEach(r => r.addEventListener('change', () => { gW = r.value; gal(); }));
-SISI.forEach(([k]) => ['A','B','C'].forEach(w => { const i = new Image(); i.src = w+'-'+k+'.jpg'; }));
+SISI.forEach(([k]) => ['A','B','C'].forEach(w => { const i = new Image(); i.src = w+'-'+k+'.jpg?v='+VER; }));
 gal();
 $('lagi').addEventListener('click', () => { f.reset(); gW='A'; gS='depan'; gal(); $('flap').textContent = 'NAMA ANDA'; $('ok').style.display = 'none'; f.style.display = 'block'; window.scrollTo({top:0, behavior:'smooth'}); });
 </script>
