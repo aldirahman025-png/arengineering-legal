@@ -61,6 +61,7 @@ button:disabled{opacity:.6;cursor:wait}
 .tabs button img{height:56px;width:auto;object-fit:contain;display:block}
 .tabs button[aria-pressed=true]{border-color:var(--ac)}
 @media (max-width:420px){.gal .main{height:360px}.tabs button img{height:44px}}
+.sz{display:block;margin-top:14px;border-radius:16px;overflow:hidden;border:2px solid var(--line);text-decoration:none}.sz img{width:100%;display:block}.sz span{display:block;text-align:center;padding:8px;color:var(--ac);font-weight:600;font-size:14px;background:var(--card)}
 footer{color:var(--mu);font-size:13px;margin-top:28px;text-align:center}
 @media (max-width:420px){h1{font-size:36px}.colors b{font-size:13px}}
 </style>
@@ -94,7 +95,8 @@ footer{color:var(--mu);font-size:13px;margin-top:28px;text-align:center}
       <input type="radio" name="ukuran" id="uXL" value="XL"><label for="uXL">XL</label>
       <input type="radio" name="ukuran" id="uXXL" value="XXL"><label for="uXXL">XXL</label>
     </div>
-    <details><summary>Lihat tabel ukuran (cm)</summary>
+    <a class="sz" href="tabel-ukuran.jpg" target="_blank" rel="noopener"><img src="tabel-ukuran.jpg" alt="Tabel ukuran baju lapangan: lebar dada, panjang, lengan untuk S sampai XXL, dengan gambar cara mengukur" loading="lazy"><span>Ketuk untuk memperbesar tabel ukuran</span></a>
+    <details><summary>Tabel ukuran versi teks (cm)</summary>
       <table><tr><th>Ukuran</th><th>Lebar dada</th><th>Panjang</th><th>Lengan</th></tr>
       <tr><td>S</td><td>50</td><td>70</td><td>58</td></tr><tr><td>M</td><td>52</td><td>72</td><td>59</td></tr>
       <tr><td>L</td><td>54</td><td>74</td><td>60</td></tr><tr><td>XL</td><td>56</td><td>76</td><td>61</td></tr>
