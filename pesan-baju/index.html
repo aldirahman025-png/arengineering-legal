@@ -7,7 +7,7 @@
 <meta name="description" content="Pre-order baju lapangan AREngineering: 3 warna, pita reflektor, bordir nama sendiri. Harga sesuai konveksi, tanpa untung.">
 <meta property="og:title" content="Pre-Order Baju Lapangan AREngineering">
 <meta property="og:description" content="3 warna · pita reflektor · bordir nama sendiri · harga sesuai konveksi">
-<meta property="og:image" content="warna-B.png">
+<meta property="og:image" content="https://aldirahman025-png.github.io/arengineering-legal/pesan-baju/B-depan.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -52,6 +52,15 @@ button:disabled{opacity:.6;cursor:wait}
 .wa{display:block;text-align:center;background:#25D366;color:#06210F;text-decoration:none;border-radius:14px;padding:14px;font:700 18px Oswald,sans-serif;letter-spacing:.5px;margin-top:10px}
 .info{margin-top:28px;background:var(--card);border-left:5px solid var(--ac);border-radius:12px;padding:14px 16px;color:#DCE5F0;font-size:15px}
 .info ul{margin:6px 0 0;padding-left:18px}
+.gal{margin-top:14px;background:var(--photo);border-radius:18px;padding:12px}
+.gal .main{display:flex;justify-content:center;align-items:center;height:430px}
+.gal .main img{max-height:100%;max-width:100%;display:block;border-radius:10px}
+.gal .cap{text-align:center;color:#0B1628;font:600 15px Oswald,sans-serif;letter-spacing:1px;margin:6px 0 10px}
+.tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.tabs button{margin:0;padding:6px 2px 4px;background:#fff;border:2px solid transparent;border-radius:10px;font:600 12px 'Public Sans',sans-serif;letter-spacing:0;color:#0B1628;display:flex;flex-direction:column;align-items:center;gap:4px}
+.tabs button img{height:56px;width:auto;object-fit:contain;display:block}
+.tabs button[aria-pressed=true]{border-color:var(--ac)}
+@media (max-width:420px){.gal .main{height:360px}.tabs button img{height:44px}}
 footer{color:var(--mu);font-size:13px;margin-top:28px;text-align:center}
 @media (max-width:420px){h1{font-size:36px}.colors b{font-size:13px}}
 </style>
@@ -69,6 +78,12 @@ footer{color:var(--mu);font-size:13px;margin-top:28px;text-align:center}
       <div><input type="radio" name="warna" id="wA" value="A" required><label for="wA"><img src="warna-A.png" alt="Navy dan abu arang" loading="lazy"><b>Navy &amp; Abu Arang</b></label></div>
       <div><input type="radio" name="warna" id="wB" value="B"><label for="wB"><img src="warna-B.png" alt="Navy dan oranye" loading="lazy"><b>Navy &amp; Oranye</b></label></div>
       <div><input type="radio" name="warna" id="wC" value="C"><label for="wC"><img src="warna-C.png" alt="Hijau zaitun dan hitam" loading="lazy"><b>Zaitun &amp; Hitam</b></label></div>
+    </div>
+
+    <div class="gal" aria-label="Galeri tampilan baju">
+      <div class="main"><img id="gImg" src="A-depan.jpg" alt="Tampak depan"></div>
+      <div class="cap" id="gCap">NAVY &amp; ABU ARANG · TAMPAK DEPAN</div>
+      <div class="tabs" id="gTabs"></div>
     </div>
 
     <h2>2 · Pilih ukuran</h2>
@@ -152,7 +167,22 @@ f.addEventListener('submit', async e => {
   } catch (err) { galat(err.message || 'Koneksi gagal. Coba lagi.'); }
   finally { btn.disabled = false; btn.textContent = 'KIRIM PESANAN'; }
 });
-$('lagi').addEventListener('click', () => { f.reset(); $('flap').textContent = 'NAMA ANDA'; $('ok').style.display = 'none'; f.style.display = 'block'; window.scrollTo({top:0, behavior:'smooth'}); });
+
+const SISI = [['depan','Depan'],['belakang','Belakang'],['kiri','Kiri'],['kanan','Kanan'],['kantong','Kantong']];
+let gW = 'A', gS = 'depan';
+const gTabs = $('gTabs');
+function gal(){
+  $('gImg').src = gW + '-' + gS + '.jpg';
+  const lbl = SISI.find(x=>x[0]==gS)[1];
+  $('gImg').alt = NAMA_WARNA[gW] + ', tampak ' + lbl.toLowerCase();
+  $('gCap').textContent = NAMA_WARNA[gW].toUpperCase() + ' · ' + (gS=='kantong' ? 'DETAIL KANTONG & BORDIR' : 'TAMPAK ' + lbl.toUpperCase());
+  gTabs.innerHTML = '';
+  SISI.forEach(([k,l]) => { const b = document.createElement('button'); b.type='button'; b.setAttribute('aria-pressed', k==gS); b.innerHTML = '<img src="'+gW+'-'+k+'.jpg" alt="" loading="lazy">' + l; b.onclick = () => { gS = k; gal(); }; gTabs.append(b); });
+}
+f.querySelectorAll('input[name=warna]').forEach(r => r.addEventListener('change', () => { gW = r.value; gal(); }));
+SISI.forEach(([k]) => ['A','B','C'].forEach(w => { const i = new Image(); i.src = w+'-'+k+'.jpg'; }));
+gal();
+$('lagi').addEventListener('click', () => { f.reset(); gW='A'; gS='depan'; gal(); $('flap').textContent = 'NAMA ANDA'; $('ok').style.display = 'none'; f.style.display = 'block'; window.scrollTo({top:0, behavior:'smooth'}); });
 </script>
 </body>
 </html>
