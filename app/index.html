@@ -4,147 +4,173 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>AREngineering · Survey, CAD &amp; Model 3D di HP</title>
-<meta name="description" content="Aplikasi surveyor Indonesia: hitung galian & timbunan, luas, waterpas, model 3D, gambar CAD, dan baca tabel dari foto langsung di HP.">
+<meta name="description" content="Aplikasi surveyor Indonesia: hitung galian & timbunan, luas, waterpas, model 3D, penampang memanjang & melintang, gambar CAD, dan baca tabel dari foto langsung di HP.">
 <meta name="theme-color" content="#06152b">
 <meta property="og:title" content="AREngineering · Survey, CAD & Model 3D di HP">
-<meta property="og:description" content="Hitung galian & timbunan, luas, waterpas, model 3D, dan gambar CAD langsung di HP.">
+<meta property="og:description" content="Hitung galian & timbunan, luas, waterpas, model 3D, penampang, dan gambar CAD langsung di HP.">
 <meta property="og:image" content="img/m3d-cf.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#06152b;--s1:#0b2242;--s2:#102d55;--line:#21467a;--ink:#ecf3ff;--mute:#9db3d3;--acc:#2f8cff;--acc2:#18c6e3;--org:#f7882f;--yel:#ffc83d}
-*{box-sizing:border-box}html{scroll-behavior:smooth;overflow-x:clip}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Manrope,system-ui,sans-serif;overflow-x:clip}.hero{overflow-x:clip}
-body:before{content:"";position:fixed;inset:0;z-index:-1;background-image:linear-gradient(#2f8cff0d 1px,transparent 1px),linear-gradient(90deg,#2f8cff0d 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(#000,#0000 85%)}
+:root{--bg:#06152b;--s1:#0b2242;--s2:#102d55;--line:#21467a;--ink:#ecf3ff;--mute:#9db3d3;--acc:#2f8cff;--acc2:#18c6e3;--org:#f7882f;--yel:#ffc83d;--ease:cubic-bezier(.2,.75,.2,1)}
+*{box-sizing:border-box}html{overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Manrope,system-ui,sans-serif;overflow-x:clip}
+body:before{content:"";position:fixed;inset:0;z-index:-2;background-image:linear-gradient(#2f8cff0d 1px,transparent 1px),linear-gradient(90deg,#2f8cff0d 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(#000,#0000 85%)}
 a{color:inherit}img{display:block;max-width:100%}
 .wrap{width:min(1120px,100% - 32px);margin:0 auto}
 .k{font:800 .72rem/1 Manrope;letter-spacing:.16em;text-transform:uppercase;color:var(--yel)}
 h1,h2,h3{margin:0;letter-spacing:-.02em}
-.btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 22px;border-radius:14px;font:800 1rem Manrope;text-decoration:none;border:1px solid transparent;transition:transform .2s,box-shadow .2s}
-.btn.pri{background:linear-gradient(135deg,#2f8cff,#1667e0);color:#fff;box-shadow:0 10px 30px #2f8cff55}.btn.pri:hover{transform:translateY(-2px);box-shadow:0 14px 34px #2f8cff77}
-.btn.sek{border-color:var(--line);background:#ffffff08}
-/* bilah atas */
-.nav{position:fixed;top:0;left:0;right:0;z-index:20;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
-.nav.on{background:#06152be6;backdrop-filter:blur(10px);border-color:#ffffff12}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 22px;border-radius:14px;font:800 1rem Manrope;text-decoration:none;border:1px solid transparent;transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s}
+.btn.pri{background:linear-gradient(135deg,#2f8cff,#1667e0);color:#fff;box-shadow:0 10px 30px #2f8cff55}.btn.pri:hover{transform:translateY(-3px);box-shadow:0 16px 40px #2f8cff80}
+.btn.sek{border-color:var(--line);background:#ffffff08}.btn.sek:hover{background:#ffffff14;transform:translateY(-3px)}
+.btn .ar{transition:transform .35s var(--ease)}.btn:hover .ar{transform:translateY(2px)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:20;transition:background .4s,border-color .4s,transform .45s var(--ease);border-bottom:1px solid transparent}
+.nav.on{background:#06152bd9;backdrop-filter:blur(12px);border-color:#ffffff12}.nav.hide{transform:translateY(-100%)}
 .nav .wrap{display:flex;align-items:center;gap:12px;height:64px}
 .lg{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#2f8cff,#164a95);display:grid;place-items:center;font:800 .82rem Manrope}
 .nav b{font-size:1.02rem}.nav small{display:block;font-size:.7rem;color:var(--mute);margin-top:-3px}.nav .sp{flex:1}
 .nav .btn{min-height:40px;padding:0 14px;font-size:.88rem}
-/* hero */
-.hero{min-height:100vh;display:grid;align-items:center;padding:96px 0 40px;position:relative}
+.bar{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--acc),var(--acc2),var(--org));z-index:21}
+.hero{min-height:100svh;display:grid;align-items:center;padding:96px 0 70px;position:relative}
 .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
-.hero h1{font-size:clamp(2.2rem,6vw,4rem);line-height:1.04;margin:14px 0 16px}
-.hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--org),var(--yel));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h1{font-size:clamp(2.2rem,6vw,4rem);line-height:1.06;margin:14px 0 16px}
+.hero h1 .w{display:inline-block;opacity:0;transform:translateY(.6em) rotate(4deg);filter:blur(6px);transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease)}
+.hero h1.on .w{opacity:1;transform:none;filter:none}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--org),var(--yel),var(--org));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:kilau 5s linear infinite}
+@keyframes kilau{to{background-position:200% 0}}
 .hero p{color:var(--mute);font-size:1.08rem;max-width:34ch;margin:0 0 26px}
 .cta{display:flex;flex-wrap:wrap;gap:12px}
 .mini{display:flex;flex-wrap:wrap;gap:18px;margin-top:28px;color:var(--mute);font-size:.86rem}.mini b{color:var(--ink);font:700 1.05rem 'JetBrains Mono'}
 .hp{position:relative;width:min(300px,72vw);margin:0 auto;aspect-ratio:585/1266;border-radius:38px;padding:10px;background:linear-gradient(160deg,#2a3b55,#0b1424);box-shadow:0 40px 80px #0009,0 0 0 1px #ffffff1c inset}
 .hp img{width:100%;height:100%;object-fit:cover;border-radius:30px}
 .hp:after{content:"";position:absolute;top:18px;left:50%;width:70px;height:6px;margin-left:-35px;border-radius:9px;background:#0008}
-.hero .hp{transform:rotate(-4deg);will-change:transform}
-.glow{position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(#2f8cff40,transparent 65%);right:-120px;top:10%;z-index:-1;filter:blur(10px)}
-.scroll{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-size:.75rem;color:var(--mute);display:flex;flex-direction:column;align-items:center;gap:6px}
-.scroll i{width:22px;height:34px;border:2px solid #ffffff40;border-radius:12px;position:relative}.scroll i:after{content:"";position:absolute;left:50%;top:6px;width:4px;height:8px;margin-left:-2px;border-radius:4px;background:#fff;animation:sc 1.6s infinite}
-@keyframes sc{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(12px)}}
-/* cerita model 3D: lengket saat di-scroll */
-.story{height:340vh;position:relative}
-.stick{position:sticky;top:0;height:100vh;display:grid;align-items:center;overflow:hidden}
+.mengambang{animation:apung 6s ease-in-out infinite}@keyframes apung{50%{translate:0 -12px}}
+.blob{position:absolute;border-radius:50%;filter:blur(40px);z-index:-1;opacity:.55;animation:gerak 14s ease-in-out infinite alternate}
+.b1{width:420px;height:420px;background:#2f8cff55;right:-80px;top:8%}.b2{width:300px;height:300px;background:#f7882f33;left:-100px;bottom:5%;animation-duration:18s}
+@keyframes gerak{to{transform:translate(-60px,50px) scale(1.15)}}
+.pita{position:absolute;left:0;right:0;bottom:0;overflow:hidden;border-top:1px solid #ffffff10;border-bottom:1px solid #ffffff10;background:#06152b99;padding:12px 0}
+.pita div{display:flex;gap:34px;width:max-content;animation:jalan 38s linear infinite;font:700 .85rem Manrope;color:var(--mute);white-space:nowrap}
+.pita span:before{content:"◆";color:var(--org);margin-right:10px;font-size:.6rem;vertical-align:2px}
+@keyframes jalan{to{transform:translateX(-50%)}}
+.story{position:relative}.story.s3{height:330vh}.story.s4{height:360vh}
+.stick{position:sticky;top:0;height:100vh;height:100svh;display:grid;align-items:center;overflow:hidden}
 .stick .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:36px;align-items:center}
-.steps{position:relative;min-height:260px}
-.st{position:absolute;inset:0;opacity:0;transform:translateY(24px);transition:opacity .5s,transform .5s}
-.st.on{opacity:1;transform:none}
+.steps{position:relative;min-height:270px}
+.st{position:absolute;inset:0;will-change:opacity,transform}
 .st .n{font:700 .8rem 'JetBrains Mono';color:var(--acc2)}
 .st h2{font-size:clamp(1.6rem,3.6vw,2.5rem);line-height:1.1;margin:8px 0 12px}
 .st p{color:var(--mute);margin:0}
 .vol{display:flex;gap:12px;margin-top:18px}.vol div{flex:1;border-radius:14px;padding:12px 14px;background:var(--s1);border:1px solid var(--line)}
 .vol small{color:var(--mute);font-size:.78rem}.vol b{display:block;font:700 1.4rem 'JetBrains Mono'}.vol .g b{color:#ff8a5b}.vol .t b{color:#4aa3ff}
-.dots{display:flex;gap:6px;margin-top:22px}.dots i{width:26px;height:4px;border-radius:9px;background:#ffffff22;transition:background .4s}.dots i.on{background:var(--acc)}
-.layar{position:relative;aspect-ratio:1000/600;border-radius:22px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 70px #0008;background:#e8eef4}
-.layar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .7s}
-.layar img.on{opacity:1}
+.dots{display:flex;gap:6px;position:absolute;bottom:-30px;left:0}.dots i{width:26px;height:4px;border-radius:9px;background:#ffffff22;overflow:hidden;position:relative}.dots i b{position:absolute;inset:0;background:var(--acc);transform-origin:0 50%;transform:scaleX(0)}
+.panggung{perspective:1400px}
+.layar{position:relative;aspect-ratio:1000/600;border-radius:22px;overflow:hidden;border:1px solid var(--line);box-shadow:0 40px 90px #000a;background:#e8eef4;transform-style:preserve-3d;will-change:transform}
+.layar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:opacity,transform}
 .tag{position:absolute;left:14px;bottom:14px;z-index:2;font:800 .72rem Manrope;letter-spacing:.06em;background:#06152bd9;color:#fff;padding:7px 11px;border-radius:9px}
-.prog{position:absolute;left:0;bottom:0;height:4px;background:linear-gradient(90deg,var(--acc),var(--acc2));z-index:3}
-/* bagian umum */
+.pn .wrap{grid-template-columns:.75fr 1.25fr}
+.kertas{position:relative;background:#fff;border-radius:18px;box-shadow:0 40px 90px #000a;overflow:hidden;color:#0b1726;will-change:transform}
+.kertas .kp{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid #e3e8ef;font:800 .74rem Manrope;letter-spacing:.04em}
+.kertas .kp i{width:9px;height:9px;border-radius:50%;background:#e3e8ef}.kertas .kp i:nth-child(1){background:#ff6058}.kertas .kp i:nth-child(2){background:#ffbd2e}.kertas .kp i:nth-child(3){background:#28c940}.kertas .kp span{margin-left:8px;color:#4c6178}
+.pnb{position:relative;height:min(62vh,540px)}
+.pml,.pmx{position:absolute;inset:0;overflow:hidden;will-change:opacity}.pml{padding:28px 12px 8px}
+.pml img{width:100%;height:100%;object-fit:contain;object-position:center;clip-path:inset(0 100% 0 0);will-change:clip-path}
+.pml .lbl,.pmx .lbl{position:absolute;left:10px;top:8px;font:800 .64rem Manrope;letter-spacing:.08em;color:#4c6178;background:#ffffffe6;padding:3px 7px;border-radius:6px;z-index:2}
+.pmx{background:#fbfcfe;opacity:0}
+.pmx img{position:absolute;left:-12%;top:50%;width:124%;max-width:none;height:auto;opacity:0;will-change:transform,opacity}
+.sta{display:flex;gap:6px;flex-wrap:wrap;margin-top:16px}.sta span{font:700 .72rem 'JetBrains Mono';padding:5px 9px;border-radius:99px;border:1px solid var(--line);color:var(--mute);transition:all .4s}.sta span.on{background:var(--acc);border-color:var(--acc);color:#fff}
 section.blk{padding:110px 0}
 .hd2{max-width:640px;margin-bottom:44px}.hd2 h2{font-size:clamp(1.8rem,4.4vw,2.8rem);line-height:1.1;margin:12px 0}.hd2 p{color:var(--mute);margin:0}
-.rv{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
-.rv.on{opacity:1;transform:none}
-/* fitur unggulan bergantian */
-.fx{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-bottom:110px}
+.rv{opacity:0;transform:translateY(46px);filter:blur(8px);transition:opacity 1s var(--ease),transform 1s var(--ease),filter 1s var(--ease)}
+.rv.on{opacity:1;transform:none;filter:none}
+.fx{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-bottom:120px}
 .fx:nth-child(even) .tx{order:2}
 .fx h3{font-size:clamp(1.5rem,3.4vw,2.2rem);line-height:1.15;margin:10px 0 12px}.fx p{color:var(--mute);margin:0 0 14px}
 .fx ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}.fx li{display:flex;gap:10px;font-size:.95rem}.fx li:before{content:"";flex:none;width:18px;height:18px;margin-top:3px;border-radius:6px;background:var(--acc);mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12l5 5 9-10' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
-.fx .hp{transform:rotate(3deg)}.fx:nth-child(even) .hp{transform:rotate(-3deg)}
-/* kisi fitur */
+.fx .hp{will-change:transform}
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.c{background:linear-gradient(160deg,var(--s2),var(--s1));border:1px solid var(--line);border-radius:18px;padding:18px}
-.c .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;margin-bottom:12px}
+.c{background:linear-gradient(160deg,var(--s2),var(--s1));border:1px solid var(--line);border-radius:18px;padding:18px;transition:transform .45s var(--ease),border-color .45s,box-shadow .45s,opacity 1s var(--ease),filter 1s var(--ease)}
+.c:hover{transform:translateY(-6px);border-color:#2f8cff88;box-shadow:0 18px 40px #0007}
+.c .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;margin-bottom:12px;font-size:1.3rem;transition:transform .45s var(--ease)}.c:hover .ic{transform:rotate(-8deg) scale(1.08)}
 .c b{display:block;font-size:1rem;margin-bottom:4px}.c small{color:var(--mute);font-size:.84rem;line-height:1.45}
-/* angka */
 .nums{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.nums div{border-top:2px solid var(--line);padding-top:16px}.nums b{font:700 clamp(2rem,5vw,3rem)/1 'JetBrains Mono';display:block}.nums small{color:var(--mute)}
-/* siapa */
+.nums div{border-top:2px solid var(--line);padding-top:16px;position:relative}.nums div:before{content:"";position:absolute;left:0;top:-2px;height:2px;width:0;background:var(--acc);transition:width 1.4s var(--ease)}.nums div.on:before{width:100%}
+.nums b{font:700 clamp(2rem,5vw,3rem)/1 'JetBrains Mono';display:block}.nums small{color:var(--mute)}
 .who{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.who div{border-radius:18px;padding:20px;background:var(--s1);border:1px solid var(--line)}.who em{font-style:normal;font-size:1.8rem}.who b{display:block;margin:8px 0 4px}.who small{color:var(--mute)}
-/* penutup */
-.end{text-align:center;padding:120px 0 90px;position:relative;overflow:hidden}
+.end{text-align:center;padding:130px 0 100px;position:relative;overflow:hidden}
 .end h2{font-size:clamp(2rem,5.5vw,3.4rem);line-height:1.08;margin:14px auto 16px;max-width:16ch}.end p{color:var(--mute);margin:0 auto 28px;max-width:44ch}
 .end .cta{justify-content:center}
 .end:before{content:"";position:absolute;inset:auto -10% -60% -10%;height:120%;background:radial-gradient(ellipse at center,#2f8cff38,transparent 60%);z-index:-1}
 footer{border-top:1px solid #ffffff12;padding:26px 0 40px;color:var(--mute);font-size:.82rem}footer .wrap{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between}footer a{color:var(--mute)}
 @media(max-width:860px){
- .hero .wrap,.stick .wrap,.fx{grid-template-columns:1fr}.hero{padding-top:86px}.hero .hp{width:min(240px,62vw);margin-top:6px}
- .stick .wrap{gap:18px;align-content:center}.steps{min-height:230px;order:2}.layar{order:1}
- .fx{gap:28px;margin-bottom:80px}.fx:nth-child(even) .tx{order:0}.fx .hp{width:min(240px,64vw)}
- .grid,.nums,.who{grid-template-columns:1fr 1fr}section.blk{padding:80px 0}.glow{width:340px;height:340px;right:-140px}
- .nav small{display:none}.scroll{display:none}
+ .hero .wrap,.stick .wrap,.fx{grid-template-columns:1fr}.hero{padding-top:84px}.hero .hp{width:min(230px,58vw)}
+ .stick .wrap{gap:16px;align-content:center}.steps{min-height:250px;order:2}.panggung{order:1}
+ .pn .steps{min-height:210px}.pnb{height:min(46svh,400px)}
+ .fx{gap:28px;margin-bottom:80px}.fx:nth-child(even) .tx{order:0}.fx .hp{width:min(230px,62vw)}
+ .grid,.nums,.who{grid-template-columns:1fr 1fr}section.blk{padding:80px 0}.b1{width:300px;height:300px}
+ .nav small{display:none}
 }
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv,.st,.layar img{transition:none}.rv{opacity:1;transform:none}.scroll i:after{animation:none}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.rv,.hero h1 .w{opacity:1!important;transform:none!important;filter:none!important}.pml img{clip-path:none!important}}
 </style>
 </head>
 <body>
+<div class="bar" id="bar"></div>
 <header class="nav" id="nav"><div class="wrap"><div class="lg">AR</div><div><b>AREngineering</b><small>Survey · CAD · Engineering</small></div><div class="sp"></div><a class="btn pri" href="https://hngrttfaqjqwhciqjpbx.supabase.co/functions/v1/unduh">Unduh APK</a></div></header>
 
-<section class="hero"><div class="glow"></div><div class="wrap">
- <div class="rv">
-  <div class="k">Aplikasi surveyor Indonesia</div>
-  <h1>Hitung galian, luas &amp; <em>model 3D</em> langsung di HP.</h1>
-  <p>Dari titik ukur sampai laporan PDF: waterpas, poligon, koordinat UTM, model 3D, dan gambar CAD dalam satu aplikasi.</p>
-  <div class="cta"><a class="btn pri" href="https://hngrttfaqjqwhciqjpbx.supabase.co/functions/v1/unduh">⬇ Unduh gratis (Android)</a><a class="btn sek" href="#cara">Lihat cara kerja</a></div>
-  <div class="mini"><span><b>46</b> alat hitung</span><span><b>SNI</b> &amp; Perka BIG</span><span><b>7 hari</b> uji coba Profesional</span></div>
+<section class="hero"><div class="blob b1"></div><div class="blob b2"></div><div class="wrap">
+ <div>
+  <div class="k rv">Aplikasi surveyor Indonesia</div>
+  <h1 id="judul">Hitung galian, luas &amp; <em>model 3D</em> langsung di HP.</h1>
+  <p class="rv">Dari titik ukur sampai laporan PDF: waterpas, poligon, koordinat UTM, model 3D, penampang, dan gambar CAD dalam satu aplikasi.</p>
+  <div class="cta rv"><a class="btn pri" href="https://hngrttfaqjqwhciqjpbx.supabase.co/functions/v1/unduh"><span class="ar">⬇</span> Unduh gratis (Android)</a><a class="btn sek" href="#cara">Lihat cara kerja</a></div>
+  <div class="mini rv"><span><b>46</b> alat hitung</span><span><b>SNI</b> &amp; Perka BIG</span><span><b>7 hari</b> uji coba Profesional</span></div>
  </div>
- <div class="rv"><div class="hp" id="hpHero"><img src="img/hp-beranda.jpg" alt="Beranda aplikasi AREngineering"></div></div>
-</div><div class="scroll"><i></i>gulir</div></section>
+ <div class="rv"><div class="mengambang"><div class="hp" id="hpHero"><img src="img/hp-beranda.jpg" alt="Beranda aplikasi AREngineering"></div></div></div>
+</div>
+<div class="pita" aria-hidden="true"><div><span>Galian &amp; timbunan</span><span>Model 3D</span><span>Penampang memanjang</span><span>Penampang melintang</span><span>Waterpas</span><span>Poligon Bowditch</span><span>GPS → UTM</span><span>Stakeout</span><span>DXF · KML</span><span>Baca tabel dari foto</span><span>Laporan PDF</span><span>Galian &amp; timbunan</span><span>Model 3D</span><span>Penampang memanjang</span><span>Penampang melintang</span><span>Waterpas</span><span>Poligon Bowditch</span><span>GPS → UTM</span><span>Stakeout</span><span>DXF · KML</span><span>Baca tabel dari foto</span><span>Laporan PDF</span></div></div>
+</section>
 
-<section class="story" id="cara"><div class="stick"><div class="wrap">
- <div class="steps" id="steps">
-  <div class="st on" data-i="0"><span class="n">01 / 03</span><h2>Titik ukur jadi permukaan 3D.</h2><p>Tempel koordinat, impor CSV/LandXML, atau foto tabelnya. Model tanah terbentuk dalam hitungan detik.</p></div>
-  <div class="st" data-i="1"><span class="n">02 / 03</span><h2>Lihat tinggi-rendahnya tanah.</h2><p>Warna elevasi, kontur, dan penampang memanjang A–B, bisa diputar dan diperbesar dengan jari.</p></div>
-  <div class="st" data-i="2"><span class="n">03 / 03</span><h2>Galian &amp; timbunan, langsung terhitung.</h2><p>Volume eksak metode komposit TIN, setara Civil 3D, dicek ulang dengan metode grid.</p>
+<section class="story s3" id="cara" data-story="m3d"><div class="stick"><div class="wrap">
+ <div class="steps">
+  <div class="st"><span class="n">01 / 03</span><h2>Titik ukur jadi permukaan 3D.</h2><p>Tempel koordinat, impor CSV/LandXML, atau foto tabelnya. Model tanah terbentuk dalam hitungan detik.</p></div>
+  <div class="st"><span class="n">02 / 03</span><h2>Lihat tinggi-rendahnya tanah.</h2><p>Warna elevasi dan kontur, bisa diputar dan diperbesar dengan jari.</p></div>
+  <div class="st"><span class="n">03 / 03</span><h2>Galian &amp; timbunan, langsung terhitung.</h2><p>Volume eksak metode komposit TIN, setara Civil 3D, dicek ulang dengan metode grid.</p>
    <div class="vol"><div class="g"><small>Galian</small><b id="vG">0 m³</b></div><div class="t"><small>Timbunan</small><b id="vT">0 m³</b></div></div></div>
-  <div class="dots" id="dots" style="position:absolute;bottom:-34px"><i class="on"></i><i></i><i></i></div>
+  <div class="dots"><i><b></b></i><i><b></b></i><i><b></b></i></div>
  </div>
- <div class="layar" id="layar"><img class="on" src="img/m3d-real.jpg" alt="Model 3D tanah tampilan realistis"><img src="img/m3d-elev.jpg" alt="Model 3D warna elevasi"><img src="img/m3d-cf.jpg" alt="Peta galian dan timbunan"><span class="tag" id="tag">MODEL 3D · REALISTIS</span><i class="prog" id="prog"></i></div>
+ <div class="panggung"><div class="layar"><img src="img/m3d-real.jpg" alt="Model 3D tanah tampilan realistis"><img src="img/m3d-elev.jpg" alt="Model 3D warna elevasi"><img src="img/m3d-cf.jpg" alt="Peta galian dan timbunan"><span class="tag">MODEL 3D</span></div></div>
+</div></div></section>
+
+<section class="story s4 pn" data-story="pen"><div class="stick"><div class="wrap">
+ <div class="steps">
+  <div class="st"><span class="n">PENAMPANG MEMANJANG</span><h2>Ketuk trase di model, profil jalan tergambar.</h2><p>Tanah asli, garis rencana, kelandaian, dan tinggi galian per STA, lengkap dengan tabel di bawah gambar.</p></div>
+  <div class="st"><span class="n">PENAMPANG MELINTANG</span><h2>Setiap 25 meter, potongan siap cetak.</h2><p>Badan jalan, saluran, luas galian (Ag) dan timbunan (At) per STA. Volume dihitung otomatis, ekspor ke PDF skala asli atau DXF.</p>
+   <div class="sta" id="sta"><span>0+000</span><span>0+025</span><span>0+050</span><span>0+075</span></div></div>
+  <div class="dots"><i><b></b></i><i><b></b></i></div>
+ </div>
+ <div class="panggung"><div class="kertas"><div class="kp"><i></i><i></i><i></i><span>Studio Penampang · SP-PM-01</span></div>
+  <div class="pnb"><div class="pml"><span class="lbl">MEMANJANG</span><img src="img/pen-memanjang.jpg" alt="Penampang memanjang trase jalan"></div>
+   <div class="pmx"><span class="lbl">MELINTANG</span><img src="img/pen-x0.jpg" alt="Penampang melintang STA 0+000"><img src="img/pen-x1.jpg" alt="Penampang melintang STA 0+025"><img src="img/pen-x2.jpg" alt="Penampang melintang STA 0+050"><img src="img/pen-x3.jpg" alt="Penampang melintang STA 0+075"></div></div></div></div>
 </div></div></section>
 
 <section class="blk"><div class="wrap">
  <div class="hd2 rv"><div class="k">Fitur unggulan</div><h2>Dibuat untuk kerja lapangan, bukan untuk pamer.</h2><p>Tombol besar, angka jelas, dan mode terang yang tetap terbaca di bawah matahari.</p></div>
  <div>
-  <div class="fx rv"><div class="tx"><div class="k">Baru · v7.19</div><h3>Foto tabel survei, angkanya langsung masuk.</h3><p>Foto daftar koordinat atau buku ukur. Aplikasi membaca angkanya, lalu menandai sel yang ragu supaya kamu periksa dulu sebelum dihitung.</p><ul><li>PDF digital dibaca langsung, tanpa internet</li><li>Sel ragu kuning, angka janggal oranye</li><li>Kolom E, N, Z, dan kode dikenali otomatis</li></ul></div><div class="hp"><img src="img/hp-bacatabel.jpg" alt="Tabel periksa hasil baca foto" loading="lazy"></div></div>
-  <div class="fx rv"><div class="tx"><div class="k">Layar Model · CAD</div><h3>Gambar CAD di HP, warna per kedalaman.</h3><p>Buka DXF, KML, dan PDF peta. Galian dan timbunan tampil bertingkat per 10 cm, tiap tingkat satu layer yang bisa dinyalakan atau dimatikan.</p><ul><li>DXF, KML/KMZ, GeoPDF, citra satelit</li><li>Ekspor DXF, PDF skala asli, KML</li><li>Pisahkan area kavling &amp; jalan secara visual</li></ul></div><div class="hp"><img src="img/hp-layarmodel.jpg" alt="Layar Model dengan warna galian timbunan bertingkat" loading="lazy"></div></div>
-  <div class="fx rv"><div class="tx"><div class="k">Hitungan dasar</div><h3>Waterpas, poligon, koordinat: rapi &amp; sesuai SNI.</h3><p>Isi bacaan seperti di buku ukur. Salah tutup, toleransi, dan koreksi dihitung otomatis, lengkap dengan kelas ketelitian.</p><ul><li>Waterpas pergi-pulang, poligon Bowditch</li><li>GPS lintang-bujur ke UTM / TM-3</li><li>Laporan PDF / Word dengan kop perusahaan</li></ul></div><div class="hp"><img src="img/hp-waterpas.jpg" alt="Alat waterpas" loading="lazy"></div></div>
+  <div class="fx"><div class="tx rv"><div class="k">Baru · v7.19</div><h3>Foto tabel survei, angkanya langsung masuk.</h3><p>Foto daftar koordinat atau buku ukur. Aplikasi membaca angkanya, lalu menandai sel yang ragu supaya kamu periksa dulu sebelum dihitung.</p><ul><li>PDF digital dibaca langsung, tanpa internet</li><li>Sel ragu kuning, angka janggal oranye</li><li>Kolom E, N, Z, dan kode dikenali otomatis</li></ul></div><div class="hp" data-px="1"><img src="img/hp-bacatabel.jpg" alt="Tabel periksa hasil baca foto" loading="lazy"></div></div>
+  <div class="fx"><div class="tx rv"><div class="k">Layar Model · CAD</div><h3>Gambar CAD di HP, warna per kedalaman.</h3><p>Buka DXF, KML, dan PDF peta. Galian dan timbunan tampil bertingkat per 10 cm, tiap tingkat satu layer yang bisa dinyalakan atau dimatikan.</p><ul><li>DXF, KML/KMZ, GeoPDF, citra satelit</li><li>Ekspor DXF, PDF skala asli, KML</li><li>Pisahkan area kavling &amp; jalan secara visual</li></ul></div><div class="hp" data-px="-1"><img src="img/hp-layarmodel.jpg" alt="Layar Model dengan warna galian timbunan bertingkat" loading="lazy"></div></div>
+  <div class="fx"><div class="tx rv"><div class="k">Hitungan dasar</div><h3>Waterpas, poligon, koordinat: rapi &amp; sesuai SNI.</h3><p>Isi bacaan seperti di buku ukur. Salah tutup, toleransi, dan koreksi dihitung otomatis, lengkap dengan kelas ketelitian.</p><ul><li>Waterpas pergi-pulang, poligon Bowditch</li><li>GPS lintang-bujur ke UTM / TM-3</li><li>Laporan PDF / Word dengan kop perusahaan</li></ul></div><div class="hp" data-px="1"><img src="img/hp-waterpas.jpg" alt="Alat waterpas" loading="lazy"></div></div>
  </div>
 </div></section>
 
 <section class="blk" style="padding-top:0"><div class="wrap">
  <div class="hd2 rv"><div class="k">Semua dalam satu aplikasi</div><h2>46 alat, dari patok sampai laporan.</h2></div>
- <div class="grid" id="grid">
-  <div class="c rv"><div class="ic" style="background:#fb923c22;color:#fb923c">⛰</div><b>Galian &amp; timbunan</b><small>Model 3D, progres MC 0 → MC 100, penampang</small></div>
+ <div class="grid">
+  <div class="c rv"><div class="ic" style="background:#fb923c22;color:#fb923c">⛰</div><b>Galian &amp; timbunan</b><small>Model 3D, progres MC 0 → MC 100</small></div>
+  <div class="c rv"><div class="ic" style="background:#38bdf822;color:#38bdf8">〰</div><b>Penampang jalan</b><small>Memanjang, melintang, diagram massa</small></div>
   <div class="c rv"><div class="ic" style="background:#34d39922;color:#34d399">▦</div><b>Luas &amp; pecah bidang</b><small>Kavling, warisan, jual sebagian</small></div>
   <div class="c rv"><div class="ic" style="background:#facc1522;color:#facc15">↕</div><b>Beda tinggi</b><small>Waterpas, perataan kuadrat terkecil</small></div>
   <div class="c rv"><div class="ic" style="background:#60a5fa22;color:#60a5fa">⌖</div><b>Koordinat</b><small>GPS → UTM, Helmert, geoid</small></div>
   <div class="c rv"><div class="ic" style="background:#f472b622;color:#f472b6">⚑</div><b>Stakeout</b><small>Pasang patok, COGO, arah &amp; jarak</small></div>
   <div class="c rv"><div class="ic" style="background:#c4b5fd22;color:#c4b5fd">⛏</div><b>Tambang</b><small>Pit, stockpile, SK IUP dari PDF</small></div>
-  <div class="c rv"><div class="ic" style="background:#38bdf822;color:#38bdf8">⇌</div><b>Data alat ukur</b><small>GSI, SDR, RW5, JobXML, CSV</small></div>
   <div class="c rv"><div class="ic" style="background:#fde04722;color:#fde047">📄</div><b>Laporan</b><small>PDF / Word siap tanda tangan</small></div>
  </div>
 </div></section>
@@ -171,32 +197,48 @@ footer{border-top:1px solid #ffffff12;padding:26px 0 40px;color:var(--mute);font
 <section class="end"><div class="wrap rv">
  <div class="k">Mulai sekarang</div><h2>Ukur di lapangan, hitung di genggaman.</h2>
  <p>Unduh gratis. Fitur Profesional bisa dicoba 7 hari.</p>
- <div class="cta"><a class="btn pri" href="https://hngrttfaqjqwhciqjpbx.supabase.co/functions/v1/unduh">⬇ Unduh APK Android</a><a class="btn sek" href="https://www.tiktok.com/@arengineering_">▶ Lihat di TikTok</a></div>
+ <div class="cta"><a class="btn pri" href="https://hngrttfaqjqwhciqjpbx.supabase.co/functions/v1/unduh"><span class="ar">⬇</span> Unduh APK Android</a><a class="btn sek" href="https://www.tiktok.com/@arengineering_">▶ Lihat di TikTok</a></div>
 </div></section>
 
 <footer><div class="wrap"><span>© 2026 AREngineering · Survey · CAD · Engineering</span><span><a href="../kebijakan-privasi.html">Kebijakan privasi</a> · <a href="../perjanjian-lisensi.html">Perjanjian lisensi</a> · <a href="../hapus-akun.html">Hapus akun</a></span></div></footer>
 
 <script>
-(()=>{const kurang=matchMedia('(prefers-reduced-motion: reduce)').matches,$=id=>document.getElementById(id);
-// bilah atas berlatar setelah di-scroll
-const nav=$('nav');addEventListener('scroll',()=>nav.classList.toggle('on',scrollY>20),{passive:true});
-// muncul satu per satu
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const sib=[...e.target.parentElement.children].filter(x=>x.classList.contains('rv')),k=Math.max(0,sib.indexOf(e.target));e.target.style.transitionDelay=(kurang?0:Math.min(k,6)*90)+'ms';e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.15});
-document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+(()=>{const kurang=matchMedia('(prefers-reduced-motion: reduce)').matches,$=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const cl=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),mix=(a,b,t)=>a+(b-a)*t,halus=t=>t*t*(3-2*t);
+// judul: kata muncul satu per satu
+const j=$('#judul');j.innerHTML=j.innerHTML.replace(/(<em>.*?<\/em>|[^\s<]+)/g,m=>`<span class="w">${m}</span>`);j.querySelectorAll('.w').forEach((w,i)=>w.style.transitionDelay=(i*70)+'ms');requestAnimationFrame(()=>requestAnimationFrame(()=>j.classList.add('on')));
+// muncul saat masuk layar, bertahap
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const sib=[...e.target.parentElement.children].filter(x=>x.classList.contains('rv')),k=Math.max(0,sib.indexOf(e.target));e.target.style.transitionDelay=Math.min(k,7)*80+'ms';e.target.classList.add('on');setTimeout(()=>{e.target.style.transitionDelay=''},1200+k*80);io.unobserve(e.target)}),{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+$$('.rv').forEach(el=>io.observe(el));
 // angka berhitung naik
-const hit=(el,n,dur=1100,suf='')=>{if(kurang){el.textContent=n.toLocaleString('id-ID')+suf;return}const t0=performance.now();const f=t=>{const k=Math.min(1,(t-t0)/dur),v=Math.round(n*(1-Math.pow(1-k,3)));el.textContent=v.toLocaleString('id-ID')+suf;if(k<1)requestAnimationFrame(f)};requestAnimationFrame(f)};
-const io2=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){hit(e.target,+e.target.dataset.n);io2.unobserve(e.target)}}),{threshold:.6});
-document.querySelectorAll('[data-n]').forEach(el=>io2.observe(el));
-// cerita model 3D: langkah & gambar berganti mengikuti posisi scroll
-const story=document.querySelector('.story'),st=[...document.querySelectorAll('.st')],im=[...document.querySelectorAll('#layar img')],dt=[...document.querySelectorAll('#dots i')],tag=$('tag'),prog=$('prog'),hp=$('hpHero');
-const TAG=['MODEL 3D · REALISTIS','MODEL 3D · ELEVASI','GALIAN (MERAH) · TIMBUNAN (BIRU)'];let cur=-1,volJalan=false;
-function tick(){const r=story.getBoundingClientRect(),tot=r.height-innerHeight,p=Math.min(1,Math.max(0,-r.top/tot)),i=Math.min(2,Math.floor(p*3));
- prog.style.width=(p*100)+'%';
- if(i!==cur){cur=i;st.forEach((s,k)=>s.classList.toggle('on',k===i));im.forEach((x,k)=>x.classList.toggle('on',k===i));dt.forEach((d,k)=>d.classList.toggle('on',k<=i));tag.textContent=TAG[i];
-  if(i===2&&!volJalan){volJalan=true;hit($('vG'),16472,1300,' m³');hit($('vT'),13349,1300,' m³')}}
- if(!kurang){const s=1+0.06*Math.sin(p*Math.PI);im[cur].style.transform=`scale(${s})`;
-  const h=Math.min(1,scrollY/innerHeight);hp.style.transform=`rotate(${-4+4*h}deg) translateY(${h*40}px)`}}
-addEventListener('scroll',()=>requestAnimationFrame(tick),{passive:true});addEventListener('resize',tick);tick();
+const hit=(el,n,dur=1300,suf='')=>{if(kurang){el.textContent=n.toLocaleString('id-ID')+suf;return}const t0=performance.now(),f=t=>{const k=Math.min(1,(t-t0)/dur);el.textContent=Math.round(n*(1-Math.pow(1-k,3))).toLocaleString('id-ID')+suf;if(k<1)requestAnimationFrame(f)};requestAnimationFrame(f)};
+const io2=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){hit(e.target,+e.target.dataset.n);e.target.parentElement.classList.add('on');io2.unobserve(e.target)}}),{threshold:.6});$$('[data-n]').forEach(el=>io2.observe(el));
+// gerak mengikuti scroll; posisi dikejar perlahan supaya terasa luwes (tidak patah-patah)
+const nav=$('#nav'),bar=$('#bar'),hp=$('#hpHero');let y=scrollY,yS=y,lastY=y,vol=false;
+const M=$('[data-story="m3d"]'),Mst=$$('[data-story="m3d"] .st'),Mim=$$('[data-story="m3d"] .layar img'),Mly=$('[data-story="m3d"] .layar'),Mtag=$('[data-story="m3d"] .tag'),Mdt=$$('[data-story="m3d"] .dots b');
+const P=$('[data-story="pen"]'),Pst=$$('[data-story="pen"] .st'),Pml=$('.pml img'),Px=$$('.pmx img'),Pk=$('.kertas'),Psta=$$('#sta span'),Pdt=$$('[data-story="pen"] .dots b');
+const fxs=$$('[data-px]'),TAG=['MODEL 3D · REALISTIS','MODEL 3D · ELEVASI','GALIAN · TIMBUNAN'];
+const prog=(el,yy)=>{const top=el.offsetTop;return cl((yy-top)/(el.offsetHeight-innerHeight))};
+function langkah(st,p,n){st.forEach((s,i)=>{let d=(p-(i+.5)/n)*n;if(i===0&&d<0)d=0;if(i===n-1&&d>0)d=0;const o=n>1?cl(1.6-Math.abs(d)*3.2):1;s.style.opacity=o;s.style.transform=`translateY(${-d*28}px)`;s.style.pointerEvents=o>.5?'auto':'none'})}
+function frame(){yS+=(y-yS)*(kurang?1:.12);if(Math.abs(y-yS)<.2)yS=y;const yy=yS;
+ const H=document.documentElement.scrollHeight-innerHeight;bar.style.transform=`scaleX(${H>0?y/H:0})`;
+ nav.classList.toggle('on',y>20);if(y>lastY+6&&y>500)nav.classList.add('hide');else if(y<lastY-6)nav.classList.remove('hide');lastY=y;
+ if(!kurang){const h=cl(yy/innerHeight);hp.style.transform=`rotate(${mix(-5,0,h)}deg) translateY(${h*60}px) scale(${mix(1,.94,h)})`}
+ const pm=prog(M,yy);langkah(Mst,pm,3);
+ Mim.forEach((im,i)=>{im.style.opacity=i===0?1:halus(cl((pm*3-i+.3)*1.6));if(!kurang)im.style.transform=`scale(${1.1-.1*pm})`});
+ Mdt.forEach((d,i)=>d.style.transform=`scaleX(${cl(pm*3-i)})`);Mtag.textContent=TAG[Math.min(2,Math.floor(pm*3))];
+ if(!kurang)Mly.style.transform=`rotateX(${mix(18,0,halus(cl(pm*2.4)))}deg) rotateY(${mix(-14,8,pm)}deg)`;
+ if(pm>.62&&!vol){vol=true;hit($('#vG'),16472,1400,' m³');hit($('#vT'),13349,1400,' m³')}
+ const pp=prog(P,yy);langkah(Pst,pp,2);Pdt.forEach((d,i)=>d.style.transform=`scaleX(${cl(pp*2-i)})`);
+ Pml.style.clipPath=kurang?'none':`inset(0 ${100-halus(cl(pp/.36))*100}% 0 0)`;
+ const sw=halus(cl((pp-.44)/.1));Pml.parentElement.style.opacity=1-sw;Px[0].parentElement.style.opacity=sw;
+ const pos=cl((pp-.48)/.46)*Px.length;
+ Px.forEach((im,i)=>{const t=cl(pos-i),out=i===Px.length-1?0:halus(cl(pos-i-1));im.style.opacity=halus(t)*(1-out);im.style.transform=`translateY(${-50+(1-halus(t))*45-out*35}%) scale(${mix(.92,1,halus(t))})`});
+ Psta.forEach((s,i)=>s.classList.toggle('on',Math.min(Px.length-1,Math.floor(pos))===i&&pos>.15));
+ if(!kurang)Pk.style.transform=`rotateX(${mix(14,0,halus(cl(pp*2.5)))}deg) rotateY(${mix(10,-6,pp)}deg)`;
+ if(!kurang)fxs.forEach(el=>{const r=el.getBoundingClientRect(),t=cl((innerHeight-r.top+(y-yy))/(innerHeight+r.height)),s=+el.dataset.px;el.style.transform=`translateY(${mix(70,-70,t)}px) rotate(${s*mix(7,-3,t)}deg)`});
+ requestAnimationFrame(frame)}
+addEventListener('scroll',()=>{y=scrollY},{passive:true});requestAnimationFrame(frame);
 })();
 </script>
 </body>
