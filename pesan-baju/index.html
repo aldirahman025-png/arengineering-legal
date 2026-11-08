@@ -81,7 +81,7 @@ footer{color:var(--mu);font-size:13px;margin-top:28px;text-align:center}
     <ul><li>Kemeja lengan panjang, bahan American Drill</li><li>Ukuran S–XL (XXL ke atas ada biaya tambahan, lihat di bawah)</li><li>Full bordir, sesuai mockup</li><li>Pengiriman di luar area Ciampea dan sekitarnya: ongkir ditanggung pembeli</li></ul>
     <div style="margin-top:10px;font-weight:600">Tambahan harga ukuran besar</div>
     <table class="tmb"><tr><td>XXL</td><td>+Rp5.000</td></tr><tr><td>3XL</td><td>+Rp10.000</td></tr><tr><td>4XL</td><td>+Rp15.000</td></tr><tr><td>5XL</td><td>+Rp20.000</td></tr></table>
-    <span class="tutup">⏰ PO ditutup Sabtu, 7 November 2026</span>
+    <span class="tutup">⏰ PO ditutup Selasa, 1 Desember 2026</span>
   </div>
   <div class="spec">
     <h3>SPESIFIKASI DESIGN A · NAVY &amp; ABU ARANG</h3>
@@ -98,7 +98,7 @@ footer{color:var(--mu);font-size:13px;margin-top:28px;text-align:center}
       <dt>Harga</dt><dd><b>Rp180.000 / pcs</b></dd>
     </dl>
   </div>
-  <div class="closed" id="closed" role="alert">PO sudah ditutup (7 November 2026). Terima kasih atas minatnya.</div>
+  <div class="closed" id="closed" role="alert">PO sudah ditutup (1 Desember 2026). Terima kasih atas minatnya.</div>
 
   <form id="f" novalidate>
     <h2>1 · Pilih warna</h2>
@@ -155,7 +155,7 @@ footer{color:var(--mu);font-size:13px;margin-top:28px;text-align:center}
 
   <div class="info"><b>Transparan & tanpa untung</b>
     <ul><li>Harga per baju sama dengan harga konveksi; nota dibagikan ke semua pemesan.</li>
-    <li>Harga Rp180.000/pcs untuk S–XL (kemeja lengan panjang, American Drill, full bordir sesuai mockup); ukuran XXL +Rp5.000, 3XL +Rp10.000, 4XL +Rp15.000, 5XL +Rp20.000. PO ditutup 7 November 2026; cara bayar dikirim lewat WhatsApp setelah pesanan masuk.</li>
+    <li>Harga Rp180.000/pcs untuk S–XL (kemeja lengan panjang, American Drill, full bordir sesuai mockup); ukuran XXL +Rp5.000, 3XL +Rp10.000, 4XL +Rp15.000, 5XL +Rp20.000. PO ditutup 1 Desember 2026; cara bayar dikirim lewat WhatsApp setelah pesanan masuk.</li>
     <li>Biaya pengiriman ke luar area Ciampea dan sekitarnya ditanggung pembeli.</li>
     <li>Bila jumlah minimal produksi tidak tercapai, PO dibatalkan dan tidak ada biaya.</li></ul></div>
   <footer>AREngineering · Survei · Pemetaan · Tambang<br>Data hanya dipakai untuk pesanan ini.</footer>
@@ -201,7 +201,7 @@ f.addEventListener('submit', async e => {
   finally { btn.disabled = false; btn.textContent = 'KIRIM PESANAN'; }
 });
 
-const TUTUP_PO = new Date('2026-11-07T23:59:59+07:00');
+const TUTUP_PO = new Date('2026-12-01T23:59:59+07:00');
 if (Date.now() > TUTUP_PO.getTime()) { f.style.display = 'none'; $('closed').style.display = 'block'; }
 const VER = '20261101-k3';
 const SISI = [['depan','Depan'],['belakang','Belakang'],['kiri','Kiri'],['kanan','Kanan'],['kantong','Kantong']];
